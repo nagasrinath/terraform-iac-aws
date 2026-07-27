@@ -11,10 +11,12 @@ locals {
 data "aws_caller_identity" "current" {}
 
 module "vpc" {
-  source     = "../../modules/vpc"
-  name       = local.name
-  cidr_block = var.vpc_cidr
-  tags       = local.tags
+  source               = "../../modules/vpc"
+  name                 = local.name
+  cidr_block           = var.vpc_cidr
+  public_subnet_cidrs  = [cidrsubnet(var.vpc_cidr, 8, 0), cidrsubnet(var.vpc_cidr, 8, 1)]
+  private_subnet_cidrs = [cidrsubnet(var.vpc_cidr, 8, 10), cidrsubnet(var.vpc_cidr, 8, 11)]
+  tags                 = local.tags
 }
 
 module "s3" {
