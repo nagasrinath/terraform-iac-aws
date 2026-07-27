@@ -4,6 +4,7 @@ locals {
     Environment = var.environment
     Project     = "terraform-iac-aws"
     ManagedBy   = "terraform"
+    Owner       = "nagasrinath"
   }
 }
 
